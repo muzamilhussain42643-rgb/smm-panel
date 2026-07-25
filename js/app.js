@@ -1,9 +1,6 @@
-const supabaseUrl = "https://czkopmjmiksqmyqfuayz.supabase.co";
-const supabaseKey = "sb_publishable_2aXFNtKT0HdkMy26WiJ8Zg_OrAEmJAR";
-
 const supabase = window.supabase.createClient(
-  supabaseUrl,
-  supabaseKey
+  "https://czkopmjmiksqmyqfuayz.supabase.co",
+  "sb_publishable_2aXFNtKT0HdkMy26WiJ8Zg_OrAEmJAR"
 );
 
 document.getElementById("registerForm")?.addEventListener("submit", async (e) => {
@@ -14,8 +11,8 @@ document.getElementById("registerForm")?.addEventListener("submit", async (e) =>
   const password = document.getElementById("password").value;
 
   const { error } = await supabase.auth.signUp({
-    email: email,
-    password: password,
+    email,
+    password,
     options: {
       data: {
         full_name: name
@@ -24,9 +21,9 @@ document.getElementById("registerForm")?.addEventListener("submit", async (e) =>
   });
 
   if (error) {
-    alert("Register Failed: " + error.message);
+    alert(error.message);
   } else {
-    alert("Registration Successful! Check your email to verify your account.");
+    alert("Registration Successful!");
     window.location.href = "login.html";
   }
 });
