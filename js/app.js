@@ -21,6 +21,6 @@ document.getElementById("loginBtn")?.addEventListener("click", async () => {
     alert("Login Failed: " + error.message);
   } else {
     alert("Login Successful!");
-    window.location.href = "services.html";
+    window.location.href = "dashboard.html";
   }
 });
