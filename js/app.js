@@ -6,21 +6,27 @@ const supabase = window.supabase.createClient(
   supabaseKey
 );
 
-console.log("Supabase Connected");
+document.getElementById("registerForm")?.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-document.getElementById("loginBtn")?.addEventListener("click", async () => {
+  const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  const { error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
+  const { error } = await supabase.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+      data: {
+        full_name: name
+      }
+    }
   });
 
   if (error) {
-    alert("Login Failed: " + error.message);
+    alert("Register Failed: " + error.message);
   } else {
-    alert("Login Successful!");
-    window.location.href = "dashboard.html";
+    alert("Registration Successful! Check your email to verify your account.");
+    window.location.href = "login.html";
   }
 });
